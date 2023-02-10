@@ -1,0 +1,27 @@
+<button igxButon (click)="reloadData()">RELOAD!</button>
+
+<igx-hierarchical-grid
+  [igxPreventDocumentScroll]="true"
+  [autoGenerate]="false"
+  height="600px"
+  width="100%"
+  (cellEdit)="handleCellEdit($event)"
+>
+  <igx-column
+    *igxFor="let column of columns"
+    [field]="column.field"
+    [header]="column | csIgxGridColumnHeaderTitle"
+    [dataType]="column.columnType"
+    [editable]="!!column.editable"
+    [formatter]="column | csIgxGridColumnFormatter"
+    [resizable]="true"
+    [hasSummary]="column.hasSummary"
+    [width]="column.width"
+    [sortable]="!column.not_sortable && sorting"
+    [filterable]="!column.notFilterable && filters"
+    [disableHiding]="!column.hideable"
+    [pinned]="column.pinned"
+  >
+  </igx-column>
+</igx-hierarchical-grid>
+<igx-toast></igx-toast>
